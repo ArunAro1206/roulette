@@ -1,0 +1,384 @@
+package Task;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Roulette {
+
+	public static void main(String[] args) {
+		char option;
+		String betnumber,add="";
+		int total=0;
+		
+		//int winAmount=0;
+		int betamount,sum;
+		
+//		List<String>roulettebetnumber=new ArrayList<String>(Arrays.asList("0","1","2","3","4","5","6"));
+
+		List<String>roulettebetnumber=new ArrayList<String>(Arrays.asList("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16", "17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36"));
+		System.out.println("Bet Number"+roulettebetnumber);
+		
+		
+		System.out.println("Bet Amount is '2','5','10','50','100','500','1k','3k' ");
+		
+		List<String>redandblack=new ArrayList<String>(Arrays.asList("1","3","5","7","9","12","14","16","18","19","21","23","25","27","30","32","34","36","2","4","6","8","10","11","13","15","17","20","22","24","26","28","29","31","33","35"));
+		List<String>column=new ArrayList<String>(Arrays.asList("1","4","7","10","13","16","19","22","25","28","31","34","2","5","8","11","14","17","20","23","26","29","32","35","3","6","9","12","15","18","21","24","27","30","33","36"));
+		
+		Scanner sc=new Scanner(System.in);
+		
+	
+		Map<String, List<String>>cornerbetmap=new HashMap<>();	
+		cornerbetmap.put("cornerbet1",Arrays.asList("1","2","4","5"));
+		cornerbetmap.put("cornerbet2",Arrays.asList("2","3","5","6") );
+		cornerbetmap.put("cornerbet3",Arrays.asList("4","5","7","8") );
+		cornerbetmap.put("cornerbet4",Arrays.asList("5","6","8","9" ));
+		cornerbetmap.put("cornerbet5",Arrays.asList("7","8","10","11" ));
+		cornerbetmap.put("cornerbet6",Arrays.asList("8","9","11","12" ));
+		cornerbetmap.put("cornerbet7",Arrays.asList("10","11","13","14") );
+		cornerbetmap.put("cornerbet8",Arrays.asList("11","12","14","15"));
+		cornerbetmap.put("cornerbet9",Arrays.asList("13","14","16","17"));
+		cornerbetmap.put("cornerbet10",Arrays.asList("14","15","17","18" ));
+		cornerbetmap.put("cornerbet11",Arrays.asList("16","17","19","20" ));
+		cornerbetmap.put("cornerbet12",Arrays.asList("17","18","20","21" ));
+		cornerbetmap.put("cornerbet13",Arrays.asList("19","20","22","23" ));
+		cornerbetmap.put("cornerbet14",Arrays.asList("20","21","23","24" ));
+		cornerbetmap.put("cornerbet15",Arrays.asList("22","23","25","26" ));
+		cornerbetmap.put("cornerbet16",Arrays.asList("23","24","26","27" ));
+		cornerbetmap.put("cornerbet17",Arrays.asList("25","26","28","29" ));
+		cornerbetmap.put("cornerbet18",Arrays.asList("26","27","29","30" ));
+		cornerbetmap.put("cornerbet19",Arrays.asList("28","29","31","32" ));
+		cornerbetmap.put("cornerbet20",Arrays.asList("29","30","32","33" ));
+		cornerbetmap.put("cornerbet21",Arrays.asList("31","32","34","35" ));
+		cornerbetmap.put("cornerbet22",Arrays.asList("32","33","35","36" ));
+	
+		Map<String, List<String>>sixnumberbetmap =new HashMap<>();	
+		sixnumberbetmap.put("sixnumber1", Arrays.asList("1","2","3","4","5","6"));
+		sixnumberbetmap.put("sixnumber2", Arrays.asList("4","5","6","7","8","9"));
+		sixnumberbetmap.put("sixnumber3", Arrays.asList("7","8","9","10","11","12"));
+		sixnumberbetmap.put("sixnumber4", Arrays.asList("10","11","12","13","14","15"));
+		sixnumberbetmap.put("sixnumber5", Arrays.asList("13","14","15","16","17","18"));
+		sixnumberbetmap.put("sixnumber6", Arrays.asList("16","17","18","19","20","21"));
+		sixnumberbetmap.put("sixnumber7", Arrays.asList("19","20","21","22","23","24"));
+		sixnumberbetmap.put("sixnumber8", Arrays.asList("22","23","24","25","26","27"));
+		sixnumberbetmap.put("sixnumber9", Arrays.asList("25","26","27","28","29","30"));
+		sixnumberbetmap.put("sixnumber10", Arrays.asList("28","29","30","31","32","33"));
+		sixnumberbetmap.put("sixnumber11", Arrays.asList("31","32","33","34","35","36"));
+		
+		Map<String, List<String>>streetbetmap =new HashMap<>();
+		streetbetmap.put("streetbet1", Arrays.asList("0","1","2"));
+		streetbetmap.put("streetbet2", Arrays.asList("0","2","3"));
+		streetbetmap.put("streetbet3", Arrays.asList("1","2","3"));
+		streetbetmap.put("streetbet4", Arrays.asList("4","5","6"));
+		streetbetmap.put("streetbet5", Arrays.asList("7","8","9"));
+		streetbetmap.put("streetbet6", Arrays.asList("10","11","12"));
+		streetbetmap.put("streetbet7", Arrays.asList("13","14","15"));
+		streetbetmap.put("streetbet8", Arrays.asList("16","17","18"));
+		streetbetmap.put("streetbet9", Arrays.asList("19","20","21"));
+		streetbetmap.put("streetbet10", Arrays.asList("22","23","24"));
+		streetbetmap.put("streetbet11", Arrays.asList("25","26","27"));
+		streetbetmap.put("streetbet12", Arrays.asList("28","29","30"));
+		streetbetmap.put("streetbet13", Arrays.asList("31","32","33"));
+		streetbetmap.put("streetbet14", Arrays.asList("34","35","36"));
+		
+		Map<String, List<String>>splitbetmap =new HashMap<>();
+		splitbetmap.put("splitbet1",Arrays.asList("0","1"));
+		splitbetmap.put("splitbet2", Arrays.asList("0","2"));
+		splitbetmap.put("splitbet3", Arrays.asList("0","3"));
+		splitbetmap.put("splitbet4", Arrays.asList("1","2"));
+		splitbetmap.put("splitbet5", Arrays.asList("2","3"));
+		splitbetmap.put("splitbet6", Arrays.asList("4","5"));
+		splitbetmap.put("splitbet7", Arrays.asList("5","6"));
+		splitbetmap.put("splitbet8", Arrays.asList("7","8"));
+		splitbetmap.put("splitbet9", Arrays.asList("8","9"));
+		splitbetmap.put("splitbet10", Arrays.asList("10","11"));
+		splitbetmap.put("splitbet11", Arrays.asList("11","12"));
+		splitbetmap.put("splitbet12", Arrays.asList("13","14"));
+		splitbetmap.put("splitbet13", Arrays.asList("14","15"));
+		splitbetmap.put("splitbet14", Arrays.asList("16","17"));
+		splitbetmap.put("splitbet15", Arrays.asList("17","18"));
+		splitbetmap.put("splitbet16", Arrays.asList("19","20"));
+		splitbetmap.put("splitbet17", Arrays.asList("20","21"));
+		splitbetmap.put("splitbet18", Arrays.asList("22","23"));
+		splitbetmap.put("splitbet19", Arrays.asList("23","24"));
+		splitbetmap.put("splitbet20", Arrays.asList("25","26"));
+		splitbetmap.put("splitbet21", Arrays.asList("26","27"));
+		splitbetmap.put("splitbet22", Arrays.asList("28","29"));
+		splitbetmap.put("splitbet23", Arrays.asList("29","30"));
+		splitbetmap.put("splitbet24", Arrays.asList("31","32"));
+		splitbetmap.put("splitbet25", Arrays.asList("32","33"));
+		splitbetmap.put("splitbet26", Arrays.asList("34","35"));
+		splitbetmap.put("splitbet27", Arrays.asList("35","36"));
+		splitbetmap.put("splitbet28", Arrays.asList("1","4"));
+		splitbetmap.put("splitbet29", Arrays.asList("2","5"));
+		splitbetmap.put("splitbet30", Arrays.asList("3","6"));
+		splitbetmap.put("splitbet31", Arrays.asList("4","7"));
+		splitbetmap.put("splitbet32", Arrays.asList("5","8"));
+		splitbetmap.put("splitbet33", Arrays.asList("6","9"));
+		splitbetmap.put("splitbet34", Arrays.asList("7","10"));
+		splitbetmap.put("splitbet35", Arrays.asList("8","11"));
+		splitbetmap.put("splitbet36", Arrays.asList("9","12"));
+		splitbetmap.put("splitbet37", Arrays.asList("10","13"));
+		splitbetmap.put("splitbet38", Arrays.asList("11","14"));
+		splitbetmap.put("splitbet39", Arrays.asList("12","15"));
+		splitbetmap.put("splitbet40", Arrays.asList("13","16"));
+		splitbetmap.put("splitbet41", Arrays.asList("14","17"));
+		splitbetmap.put("splitbet42", Arrays.asList("15","18"));
+		splitbetmap.put("splitbet43", Arrays.asList("16","19"));
+		splitbetmap.put("splitbet44", Arrays.asList("17","20"));
+		splitbetmap.put("splitbet45", Arrays.asList("18","21"));
+		splitbetmap.put("splitbet46", Arrays.asList("19","22"));
+		splitbetmap.put("splitbet47", Arrays.asList("20","23"));
+		splitbetmap.put("splitbet48", Arrays.asList("21","24"));
+		splitbetmap.put("splitbet49", Arrays.asList("22","25"));
+		splitbetmap.put("splitbet50", Arrays.asList("23","26"));
+		splitbetmap.put("splitbet51", Arrays.asList("24","27"));
+		splitbetmap.put("splitbet52", Arrays.asList("25","28"));
+		splitbetmap.put("splitbet53", Arrays.asList("26","29"));
+		splitbetmap.put("splitbet54", Arrays.asList("27","30"));
+		splitbetmap.put("splitbet55", Arrays.asList("28","31"));
+		splitbetmap.put("splitbet56", Arrays.asList("29","32"));
+		splitbetmap.put("splitbet57", Arrays.asList("30","33"));
+		splitbetmap.put("splitbet58", Arrays.asList("31","34"));
+		splitbetmap.put("splitbet59", Arrays.asList("32","35"));
+		splitbetmap.put("splitbet60", Arrays.asList("33","36"));
+	
+//		System.out.println(cornerbetmap);
+//		System.out.println(cornerbetmap.get("cornerbet1"));
+		
+		
+		Map<String, List<Integer>>map=new HashMap<>();
+		do {
+			betnumber=sc.next();
+			betamount=sc.nextInt();
+			List<Integer>list=new ArrayList<>();
+			if(!map.containsKey(betnumber))
+			{
+				map.put(betnumber, list);
+			}
+			map.get(betnumber).add(betamount);
+			System.out.println("Do you want to spin again y or n");
+			 option=sc.next().charAt(0);
+		 }while((option=='Y')||(option=='y'));
+		System.out.println("Map values are"+map);
+		
+		
+		Map<String, Integer>totalmap=new HashMap<>();
+
+    
+		for(Entry<String,List<Integer>>entry :map.entrySet())
+		{		 sum=0;
+			for(int i=0;i<entry.getValue().size();i++)
+			{
+				sum+=entry.getValue().get(i);
+				
+			}
+			System.out.println(sum);
+		 
+			totalmap.put(entry.getKey(), sum);
+		}
+	
+		System.out.println("Total Map are"+totalmap);
+		
+		Random rand=new Random();
+		String rouletterandomnumber=roulettebetnumber.get(rand.nextInt(roulettebetnumber.size()));
+		System.out.println("Roulette Random number is :"+rouletterandomnumber);
+		
+	
+	
+		
+		double totalwin=0;
+	
+		if(totalmap.containsKey(rouletterandomnumber))
+		{
+		totalwin=totalmap.get(rouletterandomnumber)*35;
+			
+			System.out.println("Straight Play Winning Amount"+totalwin);
+		}
+	
+		if(roulettebetnumber.subList(1,13).contains(rouletterandomnumber)&&totalmap.containsKey("1st12")) {
+			totalwin+=totalmap.get("1st12")*3;
+			System.out.println("1st12 Dozen play winning amount"+totalwin);
+		}
+		
+		
+		if(roulettebetnumber.subList(13,25).contains(rouletterandomnumber)&&totalmap.containsKey("2nd12")) {
+			totalwin+=totalmap.get("2nd12")*3;
+			
+			System.out.println("2nd12 Dozen play winning amount"+totalwin);
+		}
+		
+		
+		if(roulettebetnumber.subList(25,37).contains(rouletterandomnumber)&&totalmap.containsKey("3rd12")) {
+			totalwin+=totalmap.get("3rd12")*3;
+			
+			System.out.println("3rd12 Dozen play winning amount"+totalwin);
+		}
+		
+		
+		if(column.subList(0, 12).contains(rouletterandomnumber)&&totalmap.containsKey("column1"))
+		{
+			totalwin+=totalmap.get("column1")*3;
+			System.out.println("Column1 Bet winning amount"+totalwin);
+
+		}	
+		
+		if(column.subList(13,24).contains(rouletterandomnumber)&&totalmap.containsKey("column2"))
+		{
+			totalwin+=totalmap.get("column2")*3;
+			System.out.println("Column2 Bet winning amount"+totalwin);
+
+		}
+		
+		if(column.subList(25,36).contains(rouletterandomnumber)&&totalmap.containsKey("column3"))
+		{
+			totalwin+=(totalmap.get("column3")*3);
+			System.out.println("Column3 Bet winning amount"+totalwin);
+
+		}
+		
+		if( redandblack.subList(0, 18).contains(rouletterandomnumber)&&totalmap.containsKey("red"))
+		{
+		
+			totalwin+=(totalmap.get("red")*2);
+			System.out.println("Red winning amount"+totalwin);
+
+		}
+		
+		else if(redandblack.subList(19, 36).contains(rouletterandomnumber)&&totalmap.containsKey("black"))
+		{
+		
+			totalwin+=(totalmap.get("black")*2);
+			System.out.println("Black winning amount"+totalwin);
+
+		}
+		
+		if(totalmap.containsKey("odd")||totalmap.containsKey("even"))
+		{
+			if(Integer.parseInt(rouletterandomnumber)%2==0)
+			{
+			
+				totalwin+=(totalmap.get("even")*2);
+				System.out.println("Even win Amount"+totalwin);
+			}
+			else {
+			
+				totalwin+=(totalmap.get("odd")*2);
+				System.out.println("odd win Amount"+totalwin);
+			}
+			
+		}
+		
+	
+		
+		
+		if(roulettebetnumber.subList(1, 19).contains(rouletterandomnumber)&&totalmap.containsKey("1to18"))
+		{
+			totalwin+=(totalmap.get("1to18")*2);
+			System.out.println("1 to 18 Win amount "+totalwin);
+		}
+			else	if(roulettebetnumber.subList(19, 37).contains(rouletterandomnumber)&&totalmap.containsKey("19to36"))
+		{
+				totalwin+=(totalmap.get("19to36")*2);
+			System.out.println("19 to 36 Win amount "+totalwin);
+		}
+		
+		
+		List<String>cornerbetlist=new ArrayList<>();
+		for(Entry<String,List<String>>corner :cornerbetmap.entrySet())
+		{
+		for(int i=0;i<corner.getValue().size();i++)
+		{
+			if(corner.getValue().get(i).matches(rouletterandomnumber)) {
+				
+				
+			cornerbetlist.add(corner.getKey());
+			
+				
+			}
+		}	
+		
+		}
+	for(int j=0;j<cornerbetlist.size();j++)
+	{
+		if(totalmap.containsKey(cornerbetlist.get(j))) {
+			totalwin+=totalmap.get(cornerbetlist.get(j))*8.75;
+			System.out.println("corner win amount"+totalwin);
+		}
+	}
+	
+	
+	
+	List<String>sixnumberlist=new ArrayList<>();
+	for(Entry<String,List<String>>sixnumber :sixnumberbetmap.entrySet())
+	{
+	for(int i=0;i<sixnumber.getValue().size();i++)
+	{
+		if(sixnumber.getValue().get(i).matches(rouletterandomnumber)) {
+			
+			
+			sixnumberlist.add(sixnumber.getKey());
+		
+			
+		}
+	}	
+	}
+	for(int j=0;j<sixnumberlist.size();j++)
+	{
+		System.out.println("sixnumber List"+sixnumberlist.get(j));
+		if(totalmap.containsKey(sixnumberlist.get(j))) {
+			
+			totalwin+=totalmap.get(sixnumberlist.get(j))*5.83;
+			System.out.println("six number win amount"+totalwin);
+		}
+	}
+	
+	
+	
+	List<String>streetbetlist=new ArrayList<>();
+	for(Entry<String, List<String>>streetbet :streetbetmap.entrySet())
+	{
+	for(int i=0;i<streetbet.getValue().size();i++)
+	{
+		if(streetbet.getValue().get(i).matches(rouletterandomnumber))
+		{
+			streetbetlist.add(streetbet.getKey());
+		}
+	}
+	}
+	for(int j=0;j<streetbetlist.size();j++)
+	{
+		if(totalmap.containsKey(streetbetlist.get(j)))
+		{
+			totalwin+=totalmap.get(streetbetlist.get(j))*11.66;
+			System.out.println("street play win amount"+totalwin);
+		}
+	}
+	
+	
+	List<String>splitbetlist=new ArrayList<>();
+	for(Entry<String, List<String>>splitbet :splitbetmap.entrySet())
+	{
+		for(int i=0;i<splitbet.getValue().size();i++)
+		{
+			if(splitbet.getValue().get(i).matches(rouletterandomnumber)) {
+				splitbetlist.add(splitbet.getKey());
+			}
+		}
+	}
+	for(int j=0;j<splitbetlist.size();j++)
+	{
+		if(totalmap.containsKey(splitbetlist.get(j)))
+		{
+		totalwin+=(totalmap.get(splitbetlist.get(j))*17.5);
+		System.out.println("Split Play win amount"+totalwin);
+	}
+	
+	}
+}
+}
